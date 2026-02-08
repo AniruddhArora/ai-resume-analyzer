@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useNavigate, useParams} from "react-router";
 import {usePuterStore} from "~/lib/puter";
-import Summary from "~/components/Summary";
-import Details from "~/components/Details";
+import Summary from "~/components/feedback/Summary";
+import Details from "~/components/feedback/Details";
+import ATS from "~/components/feedback/ATS";
 
 export const meta = () => ([
     {title: 'Resumind | Review'},
@@ -26,7 +27,7 @@ const Resume = () => {
 
     useEffect(() => {
         const loadResume = async () => {
-            const resume = await kv.get(`/resume/${id}`);
+            const resume = await kv.get(`resume:${id}`);
 
             if (!resume) return;
 
@@ -55,7 +56,7 @@ const Resume = () => {
         <main className="pt-0">
             <nav className="resume-nav">
                 <Link to="/" className="back-button">
-                    <img src="../../public/public/images/back.svg" alt="logo" className="w-2.5 h-2.5"/>
+                    <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5"/>
                     <span className="text-gray-800 text-sm font-semibold">Back to Homepage</span>
                 </Link>
             </nav>
@@ -82,11 +83,11 @@ const Resume = () => {
                     {feedback ? (
                         <div className="flex flex-col gap-8 animate-in fade-in duartion-1000">
                             <Summary feedback={feedback} />
-                            <ATS score={feedback.ATS.score || 0} suggestion={feedback.ATS.tips || []} />
+                            <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []} />
                             <Details feedback={feedback} />
                         </div>
                     ) : (
-                        <img src="../../public/public/images/resume-scan-2.gif" alt="" className="w-full"/>
+                        <img src="/images/resume-scan-2.gif" alt="" className="w-full"/>
                     )}
                 </section>
             </div>

@@ -41,7 +41,7 @@ const Upload = () => {
         const uuid = generateUUID();
         const data = {
             id: uuid,
-            resumePath: uploadedImage.path,
+            resumePath: uploadedFile.path,
             imagePath: uploadedImage.path,
             companyName: companyName,
             jobTitle: jobTitle,
@@ -96,7 +96,7 @@ const Upload = () => {
                     {isProcessing ? (
                         <>
                             <h2>{statusText}</h2>
-                            <img src="../../public/public/images/resume-scan.gif" className="w-full"/>
+                            <img src="/images/resume-scan.gif" className="w-full"/>
                         </>
                     ) : (
                         <h2>Drop your resume for an ATS score and improvement tips</h2>
